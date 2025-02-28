@@ -177,19 +177,15 @@ class FibonacciHeapTest {
     fun `test decreaseKey when min is null`() {
         val heap = FibonacciHeap()
 
-        // Создаём узел вручную
         val node = FibonacciHeap.Node(100)
 
-        // Принудительно говорим, что в куче есть 1 узел, но heap.min = null
-        // (искусственный сценарий, нужный только для покрытия)
         heap.n = 1
         heap.min = null
 
-        // У node нет parent, child, но для decreaseKey это не критично.
-        // Вызываем decreaseKey: сработает ветвь if (min == null) { min = node }
+
         heap.decreaseKey(node, 50)
 
-        // Проверяем, что min теперь указывает на node
+
         assertEquals(node, heap.min, "После decreaseKey, min должен стать node")
         assertEquals(50, node.key, "Ключ должен уменьшиться до 50")
     }
